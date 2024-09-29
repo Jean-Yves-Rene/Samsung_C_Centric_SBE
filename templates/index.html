@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Samsung Code C-Centric</title>
+    <link href="{{ url_for('static',filename='styles/style.css')}}" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>Get Samsung Code C-Centric</h1>
+    <form action="/ccentric" method="get" onsubmit="return validateIMEI();">
+        <input type="text" name="imei" id="imei" placeholder="Enter an IMEI" />
+        <button type="submit" class="btn btn-custom">Submit</button>
+    </form>
+    <script>
+        function validateIMEI() {
+            var imeiInput = document.getElementById("imei");
+            var imeiValue = imeiInput.value.trim();
+
+            // Simple check for numeric value and length
+            if (/^\d+$/.test(imeiValue) && imeiValue.length === 15) {
+                // Check if the IMEI passes the Luhn algorithm
+                if (isValidIMEI(imeiValue)) {
+                    return true;
+                } else {
+                    alert("Invalid IMEI. The IMEI does not pass the Checksum check.");
+                    return false;
+                }
+            } else {
+                alert("Invalid IMEI. Please enter a valid 15-digit IMEI.");
+                return false;
+            }
+        }
+
+        // Luhn Algorithm to validate IMEI
+        function isValidIMEI(imei) {
+            var sum = 0;
+            var doubleUp = false;
+
+            // Iterate over each digit in the IMEI
+            for (var i = imei.length - 1; i >= 0; i--) {
+                var digit = parseInt(imei[i]);
+
+                if (doubleUp) {
+                    // Double every second digit from the right
+                    digit *= 2;
+                    if (digit > 9) {
+                        // If doubling produces a number greater than 9, subtract 9
+                        digit -= 9;
+                    }
+                }
+
+                sum += digit;
+                doubleUp = !doubleUp; // Toggle doubling every second digit
+            }
+
+            // Valid IMEI if the sum modulo 10 is 0
+            return (sum % 10 === 0);
+        }
+    </script>
+
+
+</body>
+
+</html>
