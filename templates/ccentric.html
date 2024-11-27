@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ imei }} Ccentric Samsung</title>
-    <link href="{{ url_for('static',filename='styles/style.css')}}" rel="stylesheet" />
-</head>
-
+{% block content %}
 <body>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    <div class="page-title">
+        <h1>
+            {{ imei }} Ccentric <img src="{{ url_for('static', filename='images/logo_samsung1.png') }}" alt="Samsung Logo" width="200">
+            Code
+        </h1>
+    </div>
     
-    <h1>{{ imei }} Ccentric Samsung</h1>
    
 
     <h2>Output</h2>
@@ -38,52 +37,50 @@
     
 
     <script>
-        function validateIMEI() {
-            var imeiInput = document.getElementById("imei");
-            var imeiValue = imeiInput.value.trim();
-
-            // Simple check for numeric value and length
-            if (/^\d+$/.test(imeiValue) && imeiValue.length === 15) {
-                // Check if the IMEI passes the Luhn algorithm
-                if (isValidIMEI(imeiValue)) {
-                    return true;
-                } else {
-                    alert("Invalid IMEI. The IMEI does not pass the Checksum check.");
-                    return false;
-                }
-            } else {
-                alert("Invalid IMEI. Please enter a valid 15-digit IMEI.");
-                return false;
-            }
-        }
-
-        // Luhn Algorithm to validate IMEI
-        function isValidIMEI(imei) {
-            var sum = 0;
-            var doubleUp = false;
-
-            // Iterate over each digit in the IMEI
-            for (var i = imei.length - 1; i >= 0; i--) {
-                var digit = parseInt(imei[i]);
-
-                if (doubleUp) {
-                    // Double every second digit from the right
+        // Luhn Algorithm to validate IMEI number
+        function luhnCheck(imei) {
+            let sum = 0;
+            let shouldDouble = false;
+    
+            // Start from the rightmost digit and apply the Luhn algorithm
+            for (let i = imei.length - 1; i >= 0; i--) {
+                let digit = parseInt(imei.charAt(i));
+    
+                if (shouldDouble) {
                     digit *= 2;
+                    // If doubling results in a number greater than 9, subtract 9
                     if (digit > 9) {
-                        // If doubling produces a number greater than 9, subtract 9
                         digit -= 9;
                     }
                 }
-
+    
                 sum += digit;
-                doubleUp = !doubleUp; // Toggle doubling every second digit
+                shouldDouble = !shouldDouble; // Alternate doubling every other digit
             }
-
-            // Valid IMEI if the sum modulo 10 is 0
-            return (sum % 10 === 0);
+    
+            return sum % 10 === 0; // Valid if the sum modulo 10 is 0
+        }
+    
+        // Validate IMEI before form submission
+        function validateIMEI() {
+            let imei = document.getElementById("imei").value;
+    
+            // First check if the IMEI is 15 digits and only numbers
+            if (!/^\d{15}$/.test(imei)) {
+                alert("Please enter a valid 15-digit IMEI number.");
+                return false; // Prevent form submission
+            }
+    
+            // Then check if the IMEI passes the Luhn check
+            if (!luhnCheck(imei)) {
+                alert("Invalid IMEI number. Please check the number and try again.");
+                return false; // Prevent form submission
+            }
+    
+            return true; // Proceed with form submission if all checks pass
         }
     </script>
 
 </body>
 
-</html>
+{% endblock %}

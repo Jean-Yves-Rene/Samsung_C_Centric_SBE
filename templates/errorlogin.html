@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Error</title>
+{% endblock %}
+
+{% block content %}
+
+<body class="error-page">
+    <div class="error-container">
+        <h1>Error</h1>
+        <p>{{ error }}</p>
+        <a href="{{ url_for('login') }}">Click here to go back to the login page</a>
+    </div>
+    <script>
+        // Redirect automatically after 3 seconds
+        setTimeout(function () {
+            window.location.href = "{{ url_for('login') }}";
+        }, 3000);
+    </script>
+</body>
+{% endblock %}

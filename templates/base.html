@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCentric Samsung code</title>
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
+  
+
+</head>
+
+<body>
+    
+    {% block content %}
+
+    {% endblock %}
+    
+    <!-- Snowman image -->
+    <img src="{{ url_for('static', filename='images/snowman.png') }}" alt="snowman" class="snowman" />
+
+
+    <!-- Tech image
+    <img src="{{ url_for('static', filename='images/Tech.webp') }}" alt="Tech" class="Tech" /> -->
+
+    <!-- Copyright Notice -->
+    <div class="copyright">
+        <<< &copy; PROPERTY OF SBE-CORDON GROUP - USE THIS WEBSITE SOLELY FOR SBE DAILY ACTIVITIES!>>>
+            <img src="{{ url_for('static', filename='images/LogoSBECordon.png') }}" alt="Logo Company"
+                class="sbe-logo" />
+            <footer>
+                <!-- <hr /> -->
+                <p>Powered by SBE-Cordon Group</p>
+            </footer>
+    </div>
+
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="hidden">↑</button>
+
+
+
+    <script>
+        // Show/hide back-to-top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scroll to top
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>

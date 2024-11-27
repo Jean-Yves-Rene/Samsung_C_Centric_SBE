@@ -1,34 +1,279 @@
+/* Global Reset */
+
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds space between the image and text */
+}
+
+.page-title img {
+  vertical-align: middle; /* Aligns the image with the text */
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  padding: 2rem;
+  background-color: rgb(11, 11, 11);
+  color: whitesmoke;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.6rem;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Styling the Logout link */
+a.logout-btn {
+  color: white;
+  background-color: #007bff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+}
+
+a.logout-btn:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Error Page Styling */
+body.error-page {
+  font-family: Arial, sans-serif;
+  background-color: rgb(11, 11, 11);
+  color: #721c24;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.error-container {
+  text-align: center;
+  background-color: #f8d7da;
+  padding: 20px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.error-container h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.error-container p {
+  font-size: 1.8rem; /* Increased size for error message */
+  margin-bottom: 20px;
+}
+
+.error-container a {
+  text-decoration: none;
+  color: #004085;
+  padding: 10px 15px;
+  border: 1px solid #004085;
+  border-radius: 3px;
+  background-color: #cce5ff;
+  transition: background-color 0.3s;
+}
+
+.error-container a:hover {
+  background-color: #004085;
+  color: white;
+}
+
+/* Form Input Styling */
+input {
+  width: 500px;
+  height: 60px;
+  padding: 10px;
+  font-size: 3rem;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid #4caf50;
+  box-shadow: 0 0 8px #4caf50;
+}
+
+/* Button Styling */
+button {
+  font-size: 2rem;
+  padding: 1.5rem 3rem;
+  border-radius: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: blue;
+  transform: scale(1.05);
+}
+
+.red-text {
+  color: red;
+}
+
+.orange-text {
+  color: orange; /* Use the actual color you want for amber */
+}
+
+.blue-text {
+  color: blue;
+}
+
+/* Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#backToTop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#backToTop:hover {
+  transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 0.9em;
+  color: gray;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+footer:hover {
+  transform: scale(1.05);
+  color: #4caf50;
+}
+
+/* Google Logo Styling */
+.google-logo span:nth-child(1) {
+  color: #4285f4;
+}
+.google-logo span:nth-child(2) {
+  color: #ea4335;
+}
+.google-logo span:nth-child(3) {
+  color: #fbbc05;
+}
+.google-logo span:nth-child(4) {
+  color: #4285f4;
+}
+.google-logo span:nth-child(5) {
+  color: #34a853;
+}
+.google-logo span:nth-child(6) {
+  color: #ea4335;
+}
+
+.google-logo {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  body {
-    padding: 2rem;
-    background-color: #333;
-    color: whitesmoke;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    font-size: 2rem;
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
   }
-  
-  input,
-  button {
-    font-size: 2rem;
-    padding: 1rem;
-    border-radius: 10px;
+}
+
+/* Snowman Bouncing Animation */
+.snowman {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 500px;
+  height: auto;
+  z-index: 10;
+  animation: bounce 2s infinite;
+}
+
+/* Tech Bouncing Animation */
+.Tech {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 500px;
+  height: auto;
+  z-index: 10;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  
-  .red-text {
-    color: red;
+  50% {
+    transform: translateY(-10px);
   }
-  
-  .btn-custom {
-    background-color: #28a745; /* Green color code */
-    color: #fff; /* Text color */
-    /* Add any additional styles as needed */
+}
+
+/* Copyright */
+.copyright {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  color: gray;
+}
+
+.sbe-logo {
+  display: block;
+  margin: 10px auto;
+  max-width: 200px;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
