@@ -31,23 +31,6 @@ body {
   animation: fadeIn 1s ease forwards;
 }
 
-/* Styling the Logout link */
-a.logout-btn {
-  color: white;
-  background-color: #007bff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
-  display: inline-block;
-}
-
-a.logout-btn:hover {
-  background-color: #0056b3;
-  color: white;
-}
-
 /* Error Page Styling */
 body.error-page {
   font-family: Arial, sans-serif;
@@ -181,33 +164,6 @@ footer:hover {
   color: #4caf50;
 }
 
-/* Google Logo Styling */
-.google-logo span:nth-child(1) {
-  color: #4285f4;
-}
-.google-logo span:nth-child(2) {
-  color: #ea4335;
-}
-.google-logo span:nth-child(3) {
-  color: #fbbc05;
-}
-.google-logo span:nth-child(4) {
-  color: #4285f4;
-}
-.google-logo span:nth-child(5) {
-  color: #34a853;
-}
-.google-logo span:nth-child(6) {
-  color: #ea4335;
-}
-
-.google-logo {
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  font-size: 1.5em;
-  animation: pulse 3s infinite;
-}
-
 @keyframes pulse {
   0%,
   100% {
@@ -252,20 +208,56 @@ footer:hover {
   }
 }
 
-/* Copyright */
-.copyright {
-  position: fixed;
-  bottom: 10px;
-  width: 100%;
+/* Main Content */
+main {
+  flex: 1; /* Takes up available vertical space */
+  padding: 2rem;
   text-align: center;
-  font-size: 0.8em;
-  color: gray;
+}
+
+/* Footer Section */
+.copyright {
+  background-color: inherit; /* Matches the body background */
+  color: whitesmoke;
+  text-align: center;
+  padding: 1rem 2rem; /* Adds spacing */
+  border-top: 1px solid #444; /* Optional: subtle border for separation */
+  width: 100%; /* Ensures the footer spans the full width */
+  margin-top: auto; /* Ensures the footer always sticks to the bottom */
+}
+
+.copyright footer {
+  display: flex;
+  flex-wrap: wrap; /* Allows responsiveness */
+  justify-content: space-between; /* Spreads text and logo */
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.copyright footer p {
+  flex: 1; /* Distributes space evenly */
+  font-size: 0.9rem;
+  text-align: left;
+  margin: 5px;
 }
 
 .sbe-logo {
-  display: block;
-  margin: 10px auto;
-  max-width: 200px;
+  max-width: 150px; /* Keeps the logo size reasonable */
+  height: auto; /* Maintains aspect ratio */
+  flex-shrink: 0; /* Prevents shrinking */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  .copyright footer {
+    flex-direction: column; /* Stacks elements vertically */
+    text-align: center;
+  }
+
+  .sbe-logo {
+    margin: 10px 0; /* Adds spacing for the logo */
+  }
 }
 
 /* Fade-In Animation */

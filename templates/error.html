@@ -10,12 +10,12 @@
     <div class="error-container">
         <h1>Error</h1>
         <p>{{ error }}</p>
-        <a href="{{ url_for('login') }}">Click here to go back to the login page</a>
+        <a href="{{ url_for('home') }}">Click here to go back to the home page</a>
     </div>
     <script>
         // Redirect automatically after 3 seconds
         setTimeout(function () {
-            window.location.href = "{{ url_for('login') }}";
+            window.location.href = "{{ url_for('home') }}";
         }, 3000);
     </script>
 </body>
