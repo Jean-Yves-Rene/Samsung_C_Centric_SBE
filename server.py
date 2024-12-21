@@ -61,6 +61,7 @@ def get_code():
             "result": result_code_c_centric,
             "date_added": current_date  # Add date field
         }
+        print(f"The result code c centric is: {result_code_c_centric}")
         # Insert IMEI into MongoDB collection if client is connected
         try:
             collection.insert_one(data)

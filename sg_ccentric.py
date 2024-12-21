@@ -81,15 +81,8 @@ def check_code_c_centric(imei):
             # Successful response
             data = response.json()
             ref_num = data.get('data', {}).get('refnum')  # Adjust the key here
-            if ref_num and ref_num.endswith('-SKIP'):
-                trimmed_ref_num = ref_num[:-5]  # Remove the '-SKIP' suffix
-                logging.info("Success! The trimmed code is: %s", trimmed_ref_num)
-                #return f"Success! The trimmed code is: {trimmed_ref_num}"
-                return trimmed_ref_num
-            else:
-                logging.info("Success! The code is: %s", ref_num)
-                #return f"Success! The code is: {ref_num}"
-                return ref_num
+            return(ref_num)
+
         elif response.status_code == 404:
             logging.warning("There is no code for the provided IMEI.")
             return "Not found."
